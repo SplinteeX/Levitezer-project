@@ -58,11 +58,14 @@
 
 
 /* Sidebar */
+
 .sidebar {
   position: fixed;
   top: 0;
   right: 0;
-  width: 35%;
+  width: 25%;
+  max-width: 400px;
+  min-width: 220px;
   height: 100vh;
   background-color: #f8f9fa;
   z-index: 1000;
@@ -75,13 +78,22 @@
 /* Make navbar even wider on bigger screens */
 @media (min-width: 1200px) {
   .sidebar {
-    width: 38%;
+    width: 30%;
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .sidebar {
+    width: 35%;
+    max-width: 600px;
   }
 }
 
 @media (min-width: 1600px) {
   .sidebar {
     width: 40%;
+    max-width: 700px;
   }
 }
 

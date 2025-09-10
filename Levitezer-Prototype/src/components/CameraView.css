@@ -30,7 +30,9 @@ body.sidebar-open .camera-view {
 /* Adjust camera view for wider navbar on bigger screens */
 @media (min-width: 1200px) {
   body.sidebar-open .camera-view {
-    width: calc(100% - 38%);
+    width: 70%;
+    right: 0;
+    left: 0;
   }
 }
 
@@ -128,7 +130,12 @@ body.sidebar-open .camera-view {
 /* Prevent images from looking too zoomed on wider screens */
 @media (min-width: 1200px) {
   .camera-feed {
-    object-fit: contain;
+    object-fit: cover;
+    width: 100vw;
+    left: 50%;
+    right: 0;
+    max-width: 100vw;
+    min-width: 100vw;
     background-color: #fff; /* white filler instead of black */
   }
 }
@@ -142,36 +149,13 @@ body.sidebar-open .camera-view {
   pointer-events: none;
 }
 
-.crosshair {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-}
+
 
 .crosshair-horizontal,
 .crosshair-vertical {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 1px;
-}
-
-.crosshair-horizontal {
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  transform: translateY(-50%);
-}
-
-.crosshair-vertical {
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  transform: translateX(-50%);
 }
 
 .target-info-overlay {

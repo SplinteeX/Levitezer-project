@@ -4,7 +4,7 @@ import './Joystick.css'
 const Joystick = ({ onMove }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
-  const [scale, setScale] = useState(1)
+  const [scale, setScale] = useState(0.7)
   const joystickRef = useRef(null)
 
   const maxDistance = 60

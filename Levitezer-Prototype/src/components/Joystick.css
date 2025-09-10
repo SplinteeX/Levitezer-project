@@ -38,6 +38,18 @@
 }
 
 .crosshair-line {
+.joystick-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  z-index: 1000;
+  transform: scale(0.7);
+  transform-origin: center;
+}
   position: absolute;
   background-color: rgba(97, 97, 97, 0.3);
 }
