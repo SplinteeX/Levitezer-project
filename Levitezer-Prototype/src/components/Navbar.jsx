@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import './Navbar.css'
 import levitezerLogo from '/Levitezer-logo.png'
 
@@ -55,7 +56,15 @@ const Navbar = ({ trackedDrone, setTrackedDrone, onPinInfo, pinned }) => {
       </div>
 
       {/* Sidebar */}
-      <nav className={`sidebar ${isOpen ? 'active' : ''}`}>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.nav
+            className={`sidebar active`}
+            initial={{ x: '100%', opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: '100%', opacity: 0 }}
+            transition={{ duration: 0.09, ease: 'linear' }}
+          >
         <div className="sidebar-header">
           <div className="logo-container">
             <img src={levitezerLogo} alt="Levitezer Logo" className="sidebar-logo" />
@@ -69,8 +78,8 @@ const Navbar = ({ trackedDrone, setTrackedDrone, onPinInfo, pinned }) => {
 
           <div className="detected-objects-section">
             <h3 className="section-title">Detected Objects</h3>
-            <button className={`pin-btn${pinned ? ' pinned' : ''}`} onClick={onPinInfo} title="Pin info to main view">
-              {pinned ? '📌 Unpin' : '📌 Pin'}
+            <button className={`pin-btn${pinned ? ' pinned' : ''}`} onClick={onPinInfo} title="Pin info to main view" style={{margin: '0 0 10px 0'}}>
+              {pinned ? 'Unpin Menu' : 'Pin Menu'}
             </button>
             <div className="drone-list">
               {['Drone 1', 'Drone 2', 'Drone 3', 'Drone 4'].map((droneName) => (
@@ -119,7 +128,9 @@ const Navbar = ({ trackedDrone, setTrackedDrone, onPinInfo, pinned }) => {
             </div>
           </div>
         </div>
-      </nav>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </>
   )
 }

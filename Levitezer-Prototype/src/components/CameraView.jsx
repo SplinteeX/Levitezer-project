@@ -1,4 +1,5 @@
 import './CameraView.css'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const CameraView = ({ trackedDrone, pinInfo, droneStats, setTrackedDrone }) => {
   // Drone images from public folder
@@ -20,9 +21,9 @@ const CameraView = ({ trackedDrone, pinInfo, droneStats, setTrackedDrone }) => {
     <div className="camera-view">
       <div className="camera-header">
         <div className="camera-status">
-          <span className="status-indicator"></span>
+          <span style={{ backgroundColor: trackedDrone ? '#27ae60' : '#e74c3c' }} className="status-indicator"></span>
           <span className="status-text">
-            {trackedDrone ? `Tracking: ${trackedDrone}` : 'No Target Selected'}
+            {trackedDrone ? `Tracking: ${trackedDrone}` : 'Tracking Disabled'}
           </span>
         </div>
       </div>
@@ -30,43 +31,51 @@ const CameraView = ({ trackedDrone, pinInfo, droneStats, setTrackedDrone }) => {
       <div className="camera-display">
         <img
           src={getCurrentImage()}
-          alt={trackedDrone ? `${trackedDrone} Camera View` : 'No Target Selected'}
+          alt={trackedDrone ? `${trackedDrone} Camera View` : 'Tracking Disabled'}
           className="camera-feed"
         />
 
         <div className="camera-overlay">
-          {pinInfo && (
-            <div className="pinned-info-overlay">
-              <div className="pinned-section">
-                <h4>Detected Objects</h4>
-                <ul className="pinned-drone-list">
-                  {Object.keys(droneStats).map((drone) => (
-                    <li
-                      key={drone}
-                      className={trackedDrone === drone ? 'pinned-tracked' : ''}
-                      style={{ cursor: 'pointer', textDecoration: trackedDrone === drone ? 'underline' : 'none' }}
-                      onClick={() => setTrackedDrone && setTrackedDrone(drone)}
-                    >
-                      {drone}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="pinned-section">
-                <h4>Target Information</h4>
-                <div className="pinned-target-info">
-                  <div>Target: <b>{trackedDrone || 'None'}</b></div>
-                  {trackedDrone && (
-                    <>
-                      <div>Speed: {droneStats[trackedDrone].speed}</div>
-                      <div>Distance: {droneStats[trackedDrone].distance}</div>
-                      <div>Altitude: {droneStats[trackedDrone].altitude}</div>
-                    </>
-                  )}
+          <AnimatePresence>
+            {pinInfo && (
+              <motion.div
+                className="pinned-info-overlay"
+                initial={{ opacity: 0, y: 3 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 3 }}
+                transition={{ duration: 0.09, ease: 'linear' }}
+              >
+                <div className="pinned-section">
+                  <h4>Detected Objects</h4>
+                  <ul className="pinned-drone-list">
+                    {Object.keys(droneStats).map((drone) => (
+                      <li
+                        key={drone}
+                        className={trackedDrone === drone ? 'pinned-tracked' : ''}
+                        style={{ cursor: 'pointer', border: '2px solid #27ae60'}}
+                        onClick={() => setTrackedDrone && setTrackedDrone(drone)}
+                      >
+                        {drone}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
-            </div>
-          )}
+                <div className="pinned-section">
+                  <h4>Target Information</h4>
+                  <div className="pinned-target-info">
+                    <div>Target: <b>{trackedDrone || 'None'}</b></div>
+                    {trackedDrone && (
+                      <>
+                        <div>Speed: {droneStats[trackedDrone].speed}</div>
+                        <div>Distance: {droneStats[trackedDrone].distance}</div>
+                        <div>Altitude: {droneStats[trackedDrone].altitude}</div>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>
