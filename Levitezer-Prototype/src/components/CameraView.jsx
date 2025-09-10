@@ -7,14 +7,15 @@ const CameraView = ({ trackedDrone, pinInfo, droneStats, setTrackedDrone }) => {
     'Drone 1': '/Drone-1.png',
     'Drone 2': '/Drone-2.png',
     'Drone 3': '/Drone-3.png',
-    'Drone 4': '/Drone-4.png'
+    'Drone 4': '/Drone-4.png',
+    '4 drones': '/4-drones.png'
   }
 
   const getCurrentImage = () => {
     if (trackedDrone && droneImages[trackedDrone]) {
       return droneImages[trackedDrone]
     }
-    return 'https://via.placeholder.com/800x600/2c3e50/ffffff?text=No+Target+Selected'
+    return '4 drones' in droneImages ? droneImages['4 drones'] : ''
   }
 
   return (

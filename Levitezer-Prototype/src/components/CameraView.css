@@ -3,61 +3,102 @@
 }
 .pinned-info-overlay {
   position: absolute;
-  bottom: 1.5rem;
-  right: 2rem;
+  bottom: 1rem;
+  right: 1.2rem;
   background: rgba(44, 62, 80, 0.95);
   color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-  padding: 1.2rem 1.5rem;
-  min-width: 220px;
-  max-width: 320px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  padding: 0.6rem 0.9rem;
+  min-width: 160px;
+  max-width: 240px;
   z-index: 30;
-  font-size: 1rem;
+  font-size: 0.85rem;
   pointer-events: auto;
 }
 
 .pinned-info-overlay h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.1rem;
+  margin: 0 0 0.3rem 0;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #ffd700;
 }
 
 .pinned-section {
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.6rem;
 }
 .pinned-section:last-child {
   margin-bottom: 0;
 }
+
 .pinned-drone-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.3rem 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1rem;
+  gap: 0.3rem 0.6rem;
 }
+
 .pinned-drone-list li {
   background: #34495e;
-  border-radius: 6px;
-  padding: 0.2rem 0.7rem;
-  font-size: 0.97rem;
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.8rem;
   color: #fff;
   opacity: 0.8;
 }
+
 .pinned-drone-list .pinned-tracked {
   background: #27ae60;
   color: #fff;
   font-weight: 600;
   opacity: 1;
 }
+
 .pinned-target-info {
-  font-size: 0.98rem;
+  font-size: 0.82rem;
   color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.15rem;
+}
+@media (min-width: 1000px) {
+  .pinned-info-overlay {
+    bottom: 1.5rem;
+    right: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    padding: 1.2rem 1.5rem;
+    min-width: 220px;
+    max-width: 320px;
+    font-size: 1rem;
+  }
+
+  .pinned-info-overlay h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .pinned-section {
+    margin-bottom: 1.2rem;
+  }
+
+  .pinned-drone-list {
+    margin: 0 0 0.5rem 0;
+    gap: 0.5rem 1rem;
+  }
+
+  .pinned-drone-list li {
+    border-radius: 6px;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.97rem;
+  }
+
+  .pinned-target-info {
+    font-size: 0.98rem;
+    gap: 0.2rem;
+  }
 }
 
 .pin-btn {

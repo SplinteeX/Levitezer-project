@@ -63,8 +63,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 25%;
-  max-width: 400px;
+  width: 100%;
   min-width: 220px;
   height: 100vh;
   background-color: #f8f9fa;
@@ -76,10 +75,14 @@
 }
 
 /* Make navbar even wider on bigger screens */
-@media (min-width: 1200px) {
+@media (min-width: 950px) {
   .sidebar {
     width: 30%;
-    max-width: 500px;
+  }
+}
+@media (min-width: 1200px) {
+  .sidebar {
+    width: 40%;
   }
 }
 
@@ -96,6 +99,7 @@
     max-width: 700px;
   }
 }
+
 
 .sidebar.active {
   transform: translateX(0);

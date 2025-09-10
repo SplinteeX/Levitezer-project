@@ -46,7 +46,7 @@ const ControlPanel = () => {
           onClick={toggleFullscreen}
         >
           <span className="btn-icon">
-            {isFullscreen ? '⤓' : '⤢'}
+            {isFullscreen ? '⬜' : '⛶'}
           </span>
           <span className="btn-text">
             {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
