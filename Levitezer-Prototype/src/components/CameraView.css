@@ -1,3 +1,82 @@
+.sidebar-open .pinned-info-overlay {
+  display: none !important;
+}
+.pinned-info-overlay {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 2rem;
+  background: rgba(44, 62, 80, 0.95);
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  padding: 1.2rem 1.5rem;
+  min-width: 220px;
+  max-width: 320px;
+  z-index: 30;
+  font-size: 1rem;
+  pointer-events: auto;
+}
+
+.pinned-info-overlay h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffd700;
+}
+
+.pinned-section {
+  margin-bottom: 1.2rem;
+}
+.pinned-section:last-child {
+  margin-bottom: 0;
+}
+.pinned-drone-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.pinned-drone-list li {
+  background: #34495e;
+  border-radius: 6px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.97rem;
+  color: #fff;
+  opacity: 0.8;
+}
+.pinned-drone-list .pinned-tracked {
+  background: #27ae60;
+  color: #fff;
+  font-weight: 600;
+  opacity: 1;
+}
+.pinned-target-info {
+  font-size: 0.98rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.pin-btn {
+  background: #ffd700;
+  color: #2c3e50;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.pin-btn.pinned {
+  background: #27ae60;
+  color: #fff;
+}
 /* Camera View */
 .camera-view {
   position: fixed;

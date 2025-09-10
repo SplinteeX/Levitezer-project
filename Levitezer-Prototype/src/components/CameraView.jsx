@@ -1,6 +1,6 @@
 import './CameraView.css'
 
-const CameraView = ({ trackedDrone }) => {
+const CameraView = ({ trackedDrone, pinInfo, droneStats, setTrackedDrone }) => {
   // Drone images from public folder
   const droneImages = {
     'Drone 1': '/Drone-1.png',
@@ -26,15 +26,47 @@ const CameraView = ({ trackedDrone }) => {
           </span>
         </div>
       </div>
-      
+
       <div className="camera-display">
-        <img 
-          src={getCurrentImage()} 
+        <img
+          src={getCurrentImage()}
           alt={trackedDrone ? `${trackedDrone} Camera View` : 'No Target Selected'}
           className="camera-feed"
         />
-        
+
         <div className="camera-overlay">
+          {pinInfo && (
+            <div className="pinned-info-overlay">
+              <div className="pinned-section">
+                <h4>Detected Objects</h4>
+                <ul className="pinned-drone-list">
+                  {Object.keys(droneStats).map((drone) => (
+                    <li
+                      key={drone}
+                      className={trackedDrone === drone ? 'pinned-tracked' : ''}
+                      style={{ cursor: 'pointer', textDecoration: trackedDrone === drone ? 'underline' : 'none' }}
+                      onClick={() => setTrackedDrone && setTrackedDrone(drone)}
+                    >
+                      {drone}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="pinned-section">
+                <h4>Target Information</h4>
+                <div className="pinned-target-info">
+                  <div>Target: <b>{trackedDrone || 'None'}</b></div>
+                  {trackedDrone && (
+                    <>
+                      <div>Speed: {droneStats[trackedDrone].speed}</div>
+                      <div>Distance: {droneStats[trackedDrone].distance}</div>
+                      <div>Altitude: {droneStats[trackedDrone].altitude}</div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

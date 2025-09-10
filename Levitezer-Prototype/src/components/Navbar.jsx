@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './Navbar.css'
 import levitezerLogo from '/Levitezer-logo.png'
 
-const Navbar = ({ trackedDrone, setTrackedDrone }) => {
+const Navbar = ({ trackedDrone, setTrackedDrone, onPinInfo, pinned }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [droneStats, setDroneStats] = useState({
     'Drone 1': { speed: '26km/h', distance: '121m', altitude: '45m' },
@@ -66,8 +66,12 @@ const Navbar = ({ trackedDrone, setTrackedDrone }) => {
         </div>
         
         <div className="sidebar-content">
+
           <div className="detected-objects-section">
             <h3 className="section-title">Detected Objects</h3>
+            <button className={`pin-btn${pinned ? ' pinned' : ''}`} onClick={onPinInfo} title="Pin info to main view">
+              {pinned ? '📌 Unpin' : '📌 Pin'}
+            </button>
             <div className="drone-list">
               {['Drone 1', 'Drone 2', 'Drone 3', 'Drone 4'].map((droneName) => (
                 <div key={droneName} className="drone-item">
