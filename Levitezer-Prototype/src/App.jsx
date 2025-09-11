@@ -10,6 +10,8 @@ function App() {
   const [trackedDrone, setTrackedDrone] = useState("Drone 1");
   const [pinInfo, setPinInfo] = useState(true);
   const [showControlPanel, setShowControlPanel] = useState(true);
+  const [isRecording, setIsRecording] = useState(false);
+  const [recordedSeconds, setRecordedSeconds] = useState(0);
 
   // Example drone stats (should match Navbar)
   const droneStats = {
@@ -34,12 +36,18 @@ function App() {
         pinInfo={pinInfo}
         droneStats={droneStats}
         setTrackedDrone={setTrackedDrone}
+        isRecording={isRecording}
+        recordedSeconds={recordedSeconds}
       />
       {showControlPanel && (
         <ControlPanel
           trackedDrone={trackedDrone}
           setTrackedDrone={setTrackedDrone}
           droneList={Object.keys(droneStats)}
+          isRecording={isRecording}
+          setIsRecording={setIsRecording}
+          recordedSeconds={recordedSeconds}
+          setRecordedSeconds={setRecordedSeconds}
         />
       )}
       <Joystick />
