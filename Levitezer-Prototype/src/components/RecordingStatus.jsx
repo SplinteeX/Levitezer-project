@@ -4,9 +4,7 @@ import React from "react";
 const RecordingStatus = ({ time = "00:00", quality = "1080p", value = 5 }) => {
   return (
     <span className="status-text">
-      <span style={{ color: "#e74c3c", fontWeight: 700, marginRight: 8 }}>
-        ●
-      </span>
+      <span className="recording-dot" style={{ marginRight: 8 }}>●</span>
       Recording | Time: {time} | Quality: {quality} | {value}
     </span>
   );
