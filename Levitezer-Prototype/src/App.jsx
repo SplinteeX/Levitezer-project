@@ -1,23 +1,23 @@
-import { useState } from 'react'
-import './App.css'
-import Navbar from './components/Navbar'
-import ControlPanel from './components/ControlPanel'
-import CameraView from './components/CameraView'
-import Joystick from './components/Joystick'
+import { useState } from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import ControlPanel from "./components/ControlPanel";
+import CameraView from "./components/CameraView";
+import Joystick from "./components/Joystick";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [trackedDrone, setTrackedDrone] = useState('Drone 1')
-  const [pinInfo, setPinInfo] = useState(true)
-  const [showControlPanel, setShowControlPanel] = useState(true)
+  const [count, setCount] = useState(0);
+  const [trackedDrone, setTrackedDrone] = useState("Drone 1");
+  const [pinInfo, setPinInfo] = useState(true);
+  const [showControlPanel, setShowControlPanel] = useState(true);
 
   // Example drone stats (should match Navbar)
   const droneStats = {
-    'Drone 1': { speed: '26km/h', distance: '121m', altitude: '45m' },
-    'Drone 2': { speed: '18km/h', distance: '89m', altitude: '32m' },
-    'Drone 3': { speed: '31km/h', distance: '156m', altitude: '67m' },
-    'Drone 4': { speed: '22km/h', distance: '203m', altitude: '28m' }
-  }
+    "Drone 1": { speed: "26km/h", distance: "121m", altitude: "45m" },
+    "Drone 2": { speed: "18km/h", distance: "89m", altitude: "32m" },
+    "Drone 3": { speed: "31km/h", distance: "156m", altitude: "67m" },
+    "Drone 4": { speed: "22km/h", distance: "203m", altitude: "28m" },
+  };
 
   return (
     <div className="app-content">
@@ -35,10 +35,16 @@ function App() {
         droneStats={droneStats}
         setTrackedDrone={setTrackedDrone}
       />
-      {showControlPanel && <ControlPanel />}
+      {showControlPanel && (
+        <ControlPanel
+          trackedDrone={trackedDrone}
+          setTrackedDrone={setTrackedDrone}
+          droneList={Object.keys(droneStats)}
+        />
+      )}
       <Joystick />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
