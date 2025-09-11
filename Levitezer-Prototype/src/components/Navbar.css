@@ -365,6 +365,14 @@
   }
 }
 
+/* Control Buttons Container */
+.control-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
 /* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;

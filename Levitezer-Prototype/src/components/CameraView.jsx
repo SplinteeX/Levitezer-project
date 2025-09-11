@@ -1,7 +1,9 @@
 import './CameraView.css'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 
 const CameraView = ({ trackedDrone, pinInfo, droneStats, setTrackedDrone }) => {
+  const [isMinimized, setIsMinimized] = useState(true)
   // Drone images from public folder
   const droneImages = {
     'Drone 1': '/Drone-1.png',
@@ -40,40 +42,62 @@ const CameraView = ({ trackedDrone, pinInfo, droneStats, setTrackedDrone }) => {
           <AnimatePresence>
             {pinInfo && (
               <motion.div
-                className="pinned-info-overlay"
+                className={`pinned-info-overlay ${isMinimized ? 'minimized' : ''}`}
                 initial={{ opacity: 0, y: 3 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 3 }}
                 transition={{ duration: 0.09, ease: 'linear' }}
               >
-                <div className="pinned-section">
-                  <h4>Detected Objects</h4>
-                  <ul className="pinned-drone-list">
-                    {Object.keys(droneStats).map((drone) => (
-                      <li
-                        key={drone}
-                        className={trackedDrone === drone ? 'pinned-tracked' : ''}
-                        style={{ cursor: 'pointer', border: '2px solid #27ae60'}}
-                        onClick={() => setTrackedDrone && setTrackedDrone(drone)}
-                      >
-                        {drone}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="pinned-section">
-                  <h4>Target Information</h4>
-                  <div className="pinned-target-info">
-                    <div>Target: <b>{trackedDrone || 'None'}</b></div>
-                    {trackedDrone && (
-                      <>
-                        <div>Speed: {droneStats[trackedDrone].speed}</div>
-                        <div>Distance: {droneStats[trackedDrone].distance}</div>
-                        <div>Altitude: {droneStats[trackedDrone].altitude}</div>
-                      </>
-                    )}
+                {isMinimized ? (
+                  <div className="pinned-minimized">
+                    <h4>Control Panel</h4>
+                    <button 
+                      className="minimize-btn minimize-btn-top-right"
+                      onClick={() => setIsMinimized(false)}
+                      title="Expand menu"
+                    >
+                      ↑
+                    </button>
                   </div>
-                </div>
+                ) : (
+                  <>
+                    <button 
+                      className="minimize-btn minimize-btn-top-right"
+                      onClick={() => setIsMinimized(true)}
+                      title="Minimize menu"
+                    >
+                      ↓
+                    </button>
+                    <div className="pinned-section">
+                      <h4>Detected Objects</h4>
+                      <ul className="pinned-drone-list">
+                        {Object.keys(droneStats).map((drone) => (
+                          <li
+                            key={drone}
+                            className={trackedDrone === drone ? 'pinned-tracked' : ''}
+                            style={{ cursor: 'pointer', border: '2px solid #27ae60'}}
+                            onClick={() => setTrackedDrone && setTrackedDrone(drone)}
+                          >
+                            {drone}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="pinned-section">
+                      <h4>Target Information</h4>
+                      <div className="pinned-target-info">
+                        <div>Target: <b>{trackedDrone || 'None'}</b></div>
+                        {trackedDrone && (
+                          <>
+                            <div>Speed: {droneStats[trackedDrone].speed}</div>
+                            <div>Distance: {droneStats[trackedDrone].distance}</div>
+                            <div>Altitude: {droneStats[trackedDrone].altitude}</div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
               </motion.div>
             )}
           </AnimatePresence>

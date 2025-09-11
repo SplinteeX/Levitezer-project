@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import './Navbar.css'
 import levitezerLogo from '/Levitezer-logo.png'
 
-const Navbar = ({ trackedDrone, setTrackedDrone, onPinInfo, pinned }) => {
+const Navbar = ({ trackedDrone, setTrackedDrone, onPinInfo, pinned, onToggleControlPanel, showControlPanel }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [droneStats, setDroneStats] = useState({
     'Drone 1': { speed: '26km/h', distance: '121m', altitude: '45m' },
@@ -78,9 +78,14 @@ const Navbar = ({ trackedDrone, setTrackedDrone, onPinInfo, pinned }) => {
 
           <div className="detected-objects-section">
             <h3 className="section-title">Detected Objects</h3>
-            <button className={`pin-btn${pinned ? ' pinned' : ''}`} onClick={onPinInfo} title="Pin info to main view" style={{margin: '0 0 10px 0'}}>
-              {pinned ? 'Unpin Menu' : 'Pin Menu'}
-            </button>
+            <div className="control-buttons-container">
+              <button className={`pin-btn${showControlPanel ? ' pinned' : ''}`} onClick={onToggleControlPanel} title={showControlPanel ? "Hide Control Menu" : "Show Control Menu"}>
+                {showControlPanel ? 'Hide Control Bar' : 'Show Control Bar'}
+              </button>
+              <button className={`pin-btn${pinned ? ' pinned' : ''}`} onClick={onPinInfo} title={pinned ? "Hide Pinned Menu" : "Show Pinned Menu"}>
+                {pinned ? 'Hide Control Panel' : 'Show Control Panel'}
+              </button>
+            </div>
             <div className="drone-list">
               {['Drone 1', 'Drone 2', 'Drone 3', 'Drone 4'].map((droneName) => (
                 <div key={droneName} className="drone-item">

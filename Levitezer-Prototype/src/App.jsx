@@ -8,7 +8,8 @@ import Joystick from './components/Joystick'
 function App() {
   const [count, setCount] = useState(0)
   const [trackedDrone, setTrackedDrone] = useState('Drone 1')
-  const [pinInfo, setPinInfo] = useState(false)
+  const [pinInfo, setPinInfo] = useState(true)
+  const [showControlPanel, setShowControlPanel] = useState(true)
 
   // Example drone stats (should match Navbar)
   const droneStats = {
@@ -25,6 +26,8 @@ function App() {
         setTrackedDrone={setTrackedDrone}
         onPinInfo={() => setPinInfo((p) => !p)}
         pinned={pinInfo}
+        onToggleControlPanel={() => setShowControlPanel((s) => !s)}
+        showControlPanel={showControlPanel}
       />
       <CameraView
         trackedDrone={trackedDrone}
@@ -32,7 +35,7 @@ function App() {
         droneStats={droneStats}
         setTrackedDrone={setTrackedDrone}
       />
-      <ControlPanel />
+      {showControlPanel && <ControlPanel />}
       <Joystick />
     </div>
   )
